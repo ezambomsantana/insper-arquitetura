@@ -1,19 +1,20 @@
 package com.insper.loja.produto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 public class Produto {
 
     private String id;
+    @NonNull
     private String nome;
+    @NonNull
     private Integer estoque;
+    @NonNull
     private Float preco;
 
 }
