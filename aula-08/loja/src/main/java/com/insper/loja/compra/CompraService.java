@@ -1,5 +1,6 @@
 package com.insper.loja.compra;
 
+import com.insper.loja.cliente.ClienteService;
 import com.insper.loja.produto.Produto;
 import com.insper.loja.produto.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class CompraService {
     @Autowired
     private ProdutoService produtoService;
 
+    @Autowired
+    private ClienteService clienteService;
+
     public List<Compra> listarCompras() {
         return compras;
     }
@@ -30,6 +34,8 @@ public class CompraService {
                 return null;
             }
         }
+        clienteService.buscaCliente(compra.getCliente().getId());
+
         compra.setId(UUID.randomUUID().toString());
         compras.add(compra);
         return compra;
