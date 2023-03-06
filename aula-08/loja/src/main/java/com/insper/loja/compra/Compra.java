@@ -1,7 +1,6 @@
 package com.insper.loja.compra;
 
 import com.insper.loja.cliente.Cliente;
-import com.insper.loja.pagamento.Pagamento;
 import lombok.Getter;
 import lombok.Setter;
 
