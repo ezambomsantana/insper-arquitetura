@@ -30,9 +30,9 @@ public class CompraService {
 
         for (Item item : compra.getItens()) {
             Produto produto = produtoService
-                    .buscaProduto(item.getProduto().getId());
+                    .buscaProduto(item.getProduto().getIdentifier());
             if (produto == null) {
-                return null;
+                throw new RuntimeException("Produto nao encontrado");
             }
             item.setPreco(produto.getPreco());
         }

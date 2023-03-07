@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -23,12 +25,14 @@ public class ClienteService {
     }
 
     public Cliente buscaCliente(String id) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getId().equals(id)) {
-                return cliente;
-            }
-        } // mostrar os streams
-        return null;
+        //for (Cliente cliente : clientes) {
+        //    if (cliente.getId().equals(id)) {
+        //        return cliente;
+        //    }
+        // } // mostrar os streams
+
+        Optional<Cliente> op = clientes.stream().filter(c -> c.getId().equals(id)).findFirst();
+        return op.get();
     }
 
 }

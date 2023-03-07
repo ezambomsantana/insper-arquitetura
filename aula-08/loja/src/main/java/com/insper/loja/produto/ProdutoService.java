@@ -1,6 +1,7 @@
 package com.insper.loja.produto;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,25 +11,20 @@ import java.util.UUID;
 @Service
 public class ProdutoService {
 
-    private List<Produto> produtos = new ArrayList<>();
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     public List<Produto> listarProdutos() {
-        return produtos;
+        return produtoRepository.findAll();
     }
 
     public Produto salvarProduto(Produto produto) {
-        produto.setId(UUID.randomUUID().toString());
-        produtos.add(produto);
-        return produto;
+        produto.setIdentifier(UUID.randomUUID().toString());
+        return produtoRepository.save(produto);
     }
 
-    public Produto buscaProduto(String id) {
-        for (Produto produto : produtos) {
-            if (produto.getId().equals(id)) {
-                return produto;
-            }
-        }
-        return null;
+    public Produto buscaProduto(String identifier) {
+        return produtoRepository.findByIdentifier(identifier);
     }
 
 }
