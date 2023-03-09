@@ -1,5 +1,6 @@
 package com.insper.loja.compra;
 
+import com.insper.loja.cliente.Cliente;
 import com.insper.loja.cliente.ClienteService;
 import com.insper.loja.produto.Produto;
 import com.insper.loja.produto.ProdutoService;
@@ -14,7 +15,8 @@ import java.util.UUID;
 @Service
 public class CompraService {
 
-    private List<Compra> compras = new ArrayList<>();
+    @Autowired
+    private CompraRepository compraRepository;
 
     @Autowired
     private ProdutoService produtoService;
@@ -23,25 +25,26 @@ public class CompraService {
     private ClienteService clienteService;
 
     public List<Compra> listarCompras() {
-        return compras;
+        return compraRepository.findAll();
     }
 
     public Compra salvarCompra(Compra compra) {
 
-        for (Item item : compra.getItens()) {
+     /*   for (Item item : compra.getItens()) {
             Produto produto = produtoService
                     .buscaProduto(item.getProduto().getIdentifier());
             if (produto == null) {
                 throw new RuntimeException("Produto nao encontrado");
             }
             item.setPreco(produto.getPreco());
-        }
-        clienteService.buscaCliente(compra.getCliente().getIdentifier());
+        } */
+        Cliente cliente = clienteService.buscaCliente(compra.getCliente().getIdentifier());
 
+        compra.setCliente(cliente);
         compra.setDataCompra(LocalDateTime.now());
-        compra.setId(UUID.randomUUID().toString());
-        compras.add(compra);
-        return compra;
+        compra.setIdentifier(UUID.randomUUID().toString());
+
+        return compraRepository.save(compra);
     }
 
 }

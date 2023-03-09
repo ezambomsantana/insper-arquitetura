@@ -1,12 +1,12 @@
 package com.insper.loja.cliente;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.insper.loja.compra.Compra;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +28,8 @@ public class Cliente {
     private String nome;
     @NonNull
     private String cpf;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
 }
