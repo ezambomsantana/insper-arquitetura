@@ -1,5 +1,6 @@
 package com.insper.loja.cliente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.insper.loja.compra.Compra;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,6 +30,7 @@ public class Cliente {
     @NonNull
     private String cpf;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
