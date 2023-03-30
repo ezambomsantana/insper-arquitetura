@@ -90,6 +90,17 @@ public class TeamServiceTests {
                 .delete(team);
     }
 
+    @Test
+    void test_deleteTeamNull() {
+
+        Mockito.when(teamRepository.findByIdentifier("time-1")).thenReturn(null);
+
+        // Mockito.doNothing().when(teamRepository).delete(team);
+
+        teamService.deleteTeam("time-1");
+
+    }
+
 
 
     private static Team getTeam() {
