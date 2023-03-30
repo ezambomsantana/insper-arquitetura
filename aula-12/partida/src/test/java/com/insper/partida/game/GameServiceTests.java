@@ -46,4 +46,31 @@ public class GameServiceTests {
 
     }
 
+    @Test
+    void test_saveGame() {
+
+
+        Team team = new Team();
+        team.setId(1);
+        team.setIdentifier("time-1");
+
+        Team team2 = new Team();
+        team2.setId(2);
+        team2.setIdentifier("time-2");
+
+        Game game = new Game();
+        game.setHome(team);
+        game.setAway(team2);
+
+        Mockito.when(teamService.getTeam("time-1")).thenReturn(team);
+        Mockito.when(teamService.getTeam("time-2")).thenReturn(team2);
+        Mockito.when(gameRepository.save(game)).thenReturn(game);
+
+        Game resp = gameService.saveGame(game);
+        Assertions.assertEquals("time-1",  resp.getHome().getIdentifier());
+        Assertions.assertEquals("time-2",  resp.getAway().getIdentifier());
+        Assertions.assertEquals("SCHEDULED", resp.getStatus());
+
+    }
+
 }
