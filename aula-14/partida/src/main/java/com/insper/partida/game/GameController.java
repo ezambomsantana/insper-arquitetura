@@ -1,0 +1,51 @@
+package com.insper.partida.game;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/game")
+public class GameController {
+
+    @Autowired
+    private GameService gameService;
+
+    @GetMapping
+    public Page<Game> listGames(@RequestParam(required = false) String home,
+                                @RequestParam(required = false) String away,
+                                @RequestParam(required = false) Integer attendance,
+                                Pageable pageable) {
+        return gameService.listGames(home, away, attendance, pageable);
+    }
+
+    @PostMapping
+    public Game saveGame(@RequestBody Game game) {
+        return gameService.saveGame(game);
+    }
+
+
+    @GetMapping("/{identifier}")
+    public Game getGame(@PathVariable String identifier) {
+        return gameService.getGame(identifier);
+    }
+
+    @PostMapping("/{identifier}")
+    public Game changeGame(@PathVariable String identifier, @RequestBody Game game) {
+        return gameService.editGame(identifier, game);
+    }
+
+    @DeleteMapping("/{identifier}")
+    public void deleteGame(@PathVariable String identifier) {
+        gameService.deleteGame(identifier);
+    }
+
+    @GetMapping("/{id}/score")
+    public Integer getScoreTeam(@PathVariable String id) {
+        return gameService.getScoreTeam(id);
+    }
+
+}
