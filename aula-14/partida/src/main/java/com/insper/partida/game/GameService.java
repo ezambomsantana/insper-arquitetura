@@ -2,6 +2,8 @@ package com.insper.partida.game;
 
 import com.insper.partida.equipe.Team;
 import com.insper.partida.equipe.TeamService;
+import com.insper.partida.game.dto.GameReturnDTO;
+import com.insper.partida.game.dto.SaveGameDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,15 +36,16 @@ public class GameService {
         return gameRepository.findAll(pageable);
     }
 
-    public Game saveGame(Game game) {
+    public GameReturnDTO saveGame(SaveGameDTO saveGameDTO) {
 
-        Team teamM = teamService.getTeam(game.getHome().getIdentifier());
-        Team teamV = teamService.getTeam(game.getAway().getIdentifier());
+        Team teamM = teamService.getTeam(saveGameDTO.getHome());
+        Team teamV = teamService.getTeam(saveGameDTO.getAway());
 
         if (teamM == null || teamV == null) {
             return null;
         }
 
+        Game game = new Game();
         game.setIdentifier(UUID.randomUUID().toString());
         game.setHome(teamM);
         game.setAway(teamV);
@@ -52,7 +55,9 @@ public class GameService {
         game.setGameDate(LocalDateTime.now());
         game.setStatus("SCHEDULED");
 
-        return gameRepository.save(game);
+        gameRepository.save(game);
+        return GameReturnDTO.covert(game);
+
     }
 
     public Game editGame(String identifier, Game game) {

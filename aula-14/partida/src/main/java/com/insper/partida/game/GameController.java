@@ -1,5 +1,7 @@
 package com.insper.partida.game;
 
+import com.insper.partida.game.dto.GameReturnDTO;
+import com.insper.partida.game.dto.SaveGameDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +25,7 @@ public class GameController {
     }
 
     @PostMapping
-    public Game saveGame(@RequestBody Game game) {
+    public GameReturnDTO saveGame(@RequestBody SaveGameDTO game) {
         return gameService.saveGame(game);
     }
 
