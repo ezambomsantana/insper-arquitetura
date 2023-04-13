@@ -37,5 +37,13 @@ public class BetService {
     }
 
 
+    public List<Bet> getBetsByGame(String gameId) {
 
+        GameReturnDTO game = gameService.verifyGame(gameId);
+        if (game != null) {
+            return betRespository.findByGameIdentifier(gameId);
+        }
+        throw new RuntimeException("Game not found");
+
+    }
 }

@@ -27,4 +27,9 @@ public class BetController {
         return betService.verifyBet(betId);
     }
 
+    @GetMapping("/{gameId}/game")
+    public List<Bet> getBetsByGame(@PathVariable String gameId) {
+        return betService.getBetsByGame(gameId);
+    }
+
 }
