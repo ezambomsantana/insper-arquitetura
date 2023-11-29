@@ -20,6 +20,7 @@ i) A anotação @PostMapping deve ser usada para rotas que criam dados no servid
 
 j) As classes ou interfaces anotadas com @RestController, @Service e @Repository devem ser instanciadas diretamente no código.
 
+----
 
 2. Explique com as suas palavras o padrão de projeto Singleton, mostre um exemplo de como esse padrão pode ser implementado na linguagem Java (sem usar nenhum framework)
 
