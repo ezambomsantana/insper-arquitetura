@@ -24,6 +24,8 @@ j) As classes ou interfaces anotadas com @RestController, @Service e @Repository
 
 2. Explique com as suas palavras o padrão de projeto Singleton, mostre um exemplo de como esse padrão pode ser implementado na linguagem Java (sem usar nenhum framework)
 
+----
+
 3. Considere uma aplicação que tenha as seguintes rotas:
 
 GET /montadora (lista todas as montadoras cadastradas)
@@ -44,4 +46,8 @@ PUT /carro/{id} (edita um carro identificada pelo seu id)
 DELETE /carro/{id} (exclui um carro identificada pelo seu id)
 
 
-Implemente um projeto Spring que contenha todas essas rotas. Faça a modelagem do domínio, será avaliado todas as boas práticas de programação, como os princípios SOLID, Arquitetura Limpa e Padrões de Projetos.
+Implemente um projeto Spring que contenha todas essas rotas. Itens que serão avaliados:
+ - Modelagem do domínio,
+ - Boas práticas de programação e divisão em camadas
+ - Princípios SOLID
+ - Arquitetura Limpa e Padrões de Projetos.
