@@ -28,25 +28,25 @@ j) As classes ou interfaces anotadas com @RestController, @Service e @Repository
 
 3. Considere uma aplicação que tenha as seguintes rotas:
 
-GET /montadora (lista todas as montadoras cadastradas)
+- GET /montadora (lista todas as montadoras cadastradas)
 
-POST /montadora (cria uma nova montadora, a montadora deve ter o id, nome e país de origem)
+- POST /montadora (cria uma nova montadora, a montadora deve ter o id, nome e país de origem)
 
-PUT /montadora/{id} (edita uma montadora identificada pelo seu id)
+- PUT /montadora/{id} (edita uma montadora identificada pelo seu id)
 
-DELETE /montadora/{id} (exclui uma montadora identificada pelo seu id, não podem ser excluídas montadoras que possuem carros cadastrados)
-
-
-GET /carro (lista todos os carros cadastrados, deve existir um filtro opcional com o id de uma montadora)
-
-POST /carro (cria um novo carro - o carro deve ter um id, nome, preço e a montadora)
-
-PUT /carro/{id} (edita um carro identificada pelo seu id)
-
-DELETE /carro/{id} (exclui um carro identificada pelo seu id)
+- DELETE /montadora/{id} (exclui uma montadora identificada pelo seu id, não podem ser excluídas montadoras que possuem carros cadastrados)
 
 
-Implemente um projeto Spring que contenha todas essas rotas. Itens que serão avaliados:
+- GET /carro (lista todos os carros cadastrados, deve existir um filtro opcional com o id de uma montadora)
+
+- POST /carro (cria um novo carro - o carro deve ter um id, nome, preço e a montadora)
+
+- PUT /carro/{id} (edita um carro identificada pelo seu id)
+
+- DELETE /carro/{id} (exclui um carro identificada pelo seu id)
+
+
+Implemente um projeto Spring que contenha todas essas rotas. Além da implementação das rotas, os seguintes itens serão avaliados:
  - Modelagem do domínio,
  - Boas práticas de programação e divisão em camadas
  - Princípios SOLID
